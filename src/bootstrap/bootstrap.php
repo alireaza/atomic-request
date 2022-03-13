@@ -23,6 +23,7 @@ return (new class(DICBuilder::getInstance()) {
         $this->error_handler = $this->container->resolve(ErrorHandler::class);
 
         $this->container->set(DotEnv::class, fn(): DotEnv => (new DotEnvContainer())());
+        $this->container->resolve(DotEnv::class);
 
         $this->container->set(RdKafka\Conf::class, fn(): RdKafka\Conf => (new KafkaConfContainer())());
 

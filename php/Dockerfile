@@ -38,6 +38,13 @@ RUN apk --no-cache --virtual .pcntl add --update \
 && docker-php-ext-install -j${NPROC} pcntl \
 && apk del .pcntl
 
+RUN apk --no-cache --virtual .supervisord add --update \
+&& apk --no-cache add supervisor \
+&& touch /etc/supervisord.conf \
+&& echo "[supervisord]" >> /etc/supervisord.conf \
+&& echo "nodaemon=true" >> /etc/supervisord.conf \
+&& apk del .supervisord
+
 ARG UNAME=udocker
 ARG UID=1000
 ARG GNAME=$UNAME
@@ -58,4 +65,4 @@ EXPOSE 9001
 # xdebug 3 port
 EXPOSE 9003
 
-ENTRYPOINT ["php-fpm"]
+ENTRYPOINT ["/bin/sh", "-c", "php-fpm & supervisord --configuration /etc/supervisord.conf"]

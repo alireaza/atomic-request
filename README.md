@@ -48,6 +48,11 @@ $ docker-compose exec --user $(id -u):$(id -g) php composer -h
 $ docker-compose exec php /usr/bin/dbgpProxy --server 0.0.0.0:9003 --client 0.0.0.0:9001
 ```
 
+#### Supervisord CLI
+```bash
+$ docker-compose exec --user $(id -u):$(id -g) php supervisord -h
+```
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.

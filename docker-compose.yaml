@@ -19,7 +19,7 @@ services:
       - ./src:/var/www/html
       - ./php/udocker:/home/udocker
       - ./php/conf.d:/usr/local/etc/php/conf.d
-      - ../AliReaza:/AliReaza
+      - ./php/supervisord.conf:/etc/supervisord.conf
     restart: always
     environment:
       - PHP_IPV4=${PHP_IPV4:-172.110.3.2}
